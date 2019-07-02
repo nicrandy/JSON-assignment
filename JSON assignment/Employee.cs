@@ -41,10 +41,6 @@ namespace JSON_assignment
         public static Employee[] FromJson(string json) => JsonConvert.DeserializeObject<Employee[]>(json, JSON_assignment.Converter.Settings);
     }
 
-    public static class Serialize
-    {
-        public static string ToJson(this Employee[] self) => JsonConvert.SerializeObject(self, JSON_assignment.Converter.Settings);
-    }
 
     internal static class Converter
     {
