@@ -168,69 +168,88 @@ namespace JSON_assignment
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // update information on click
-            DataGridViewRow newDataRow = dataGridView1.Rows[indexRow];
-            newDataRow.Cells[0].Value = firstName.Text;
-            newDataRow.Cells[1].Value = lastName.Text;
-            try
+            DialogResult dialog = MessageBox.Show("Is this correct: First name: " + firstName.Text + ", Last name: " + lastName.Text + ", Age: " + age.Text + ", Type: " + type.Text + ", Title: " + title.Text + ", Salary: " + salary.Text,
+                                        "Update employee information", MessageBoxButtons.YesNo);
+            if (dialog == DialogResult.Yes)
             {
-                newDataRow.Cells[2].Value = int.Parse(age.Text);
+                // update information on click
+                DataGridViewRow newDataRow = dataGridView1.Rows[indexRow];
+                newDataRow.Cells[0].Value = firstName.Text;
+                newDataRow.Cells[1].Value = lastName.Text;
+                try
+                {
+                    newDataRow.Cells[2].Value = int.Parse(age.Text);
+
+                }
+                catch (FormatException)
+                {
+
+                    string text = "Enter numbers only for age";
+                    MessageBox.Show(text);
+                }
+                newDataRow.Cells[3].Value = type.Text;
+                newDataRow.Cells[4].Value = title.Text;
+                try
+                {
+                    newDataRow.Cells[5].Value = int.Parse(salary.Text);
+
+                }
+                catch (FormatException)
+                {
+
+                    string text = "Enter numbers only for salary. No , or $ ";
+                    MessageBox.Show(text);
+                }
 
             }
-            catch (FormatException)
+            else if (dialog == DialogResult.No)
             {
-
-                string text = "Enter numbers only for age";
-                MessageBox.Show(text);
             }
-            newDataRow.Cells[3].Value = type.Text;
-            newDataRow.Cells[4].Value = title.Text;
-            try
-            {
-                newDataRow.Cells[5].Value = int.Parse(salary.Text);
 
-            }
-            catch (FormatException)
-            {
 
-                string text = "Enter numbers only for salary. No , or $ ";
-                MessageBox.Show(text);
-            }
+
+
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            // add new record to table
-            table = dataGridView1.DataSource as DataTable;
-            DataRow newDataRow = table.NewRow();
-
-            newDataRow[0] = firstName.Text;
-            newDataRow[1] = lastName.Text;
-            try
+            DialogResult dialog = MessageBox.Show("Is this correct: First name: " + firstName.Text +", Last name: " + lastName.Text +", Age: " + age.Text + ", Type: " + type.Text + ", Title: " + title.Text + ", Salary: " + salary.Text ,
+                                                    "Add new employee", MessageBoxButtons.YesNo);
+            if (dialog == DialogResult.Yes)
             {
-                newDataRow[2] = int.Parse(age.Text);
+                // add new record to table
+                table = dataGridView1.DataSource as DataTable;
+                DataRow newDataRow = table.NewRow();
+
+                newDataRow[0] = firstName.Text;
+                newDataRow[1] = lastName.Text;
+                try
+                {
+                    newDataRow[2] = int.Parse(age.Text);
+                }
+                catch (FormatException)
+                {
+                    string text = "Enter numbers only for age";
+                    MessageBox.Show(text);
+                }
+                newDataRow[3] = type.Text;
+                newDataRow[4] = title.Text;
+                try
+                {
+                    newDataRow[5] = int.Parse(salary.Text);
+                }
+                catch (FormatException)
+                {
+                    string text = "Enter numbers only for salary. No , or $ ";
+                    MessageBox.Show(text);
+                }
+                table.Rows.Add(newDataRow);
+
             }
-            catch (FormatException)
+            else if (dialog == DialogResult.No)
             {
-
-                string text = "Enter numbers only for age";
-                MessageBox.Show(text);
-            }
-            newDataRow[3] = type.Text;
-            newDataRow[4] = title.Text;
-            try
-            {
-                newDataRow[5] = int.Parse(salary.Text);
-
-            }
-            catch (FormatException)
-            {
-
-                string text = "Enter numbers only for salary. No , or $ ";
-                MessageBox.Show(text);
             }
 
-            table.Rows.Add(newDataRow);
 
         }
 
