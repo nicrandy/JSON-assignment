@@ -186,6 +186,9 @@
   <data name="dataGridView1.Location" type="System.Drawing.Point, System.Drawing">
     <value>63, 193</value>
   </data>
+  <data name="dataGridView1.RowHeadersWidth" type="System.Int32, mscorlib">
+    <value>72</value>
+  </data>
   <data name="dataGridView1.Size" type="System.Drawing.Size, System.Drawing">
     <value>1358, 363</value>
   </data>

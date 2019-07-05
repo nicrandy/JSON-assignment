@@ -74,7 +74,7 @@ namespace JSON_assignment
             if (tableExists == true)
             {
                 DialogResult dialog = MessageBox.Show("Loading new file will overwrite current table data. Are you sure you want to do this?",
-                       "Load new file", MessageBoxButtons.OKCancel);
+                       "Load new file", MessageBoxButtons.YesNo);
                 if (dialog == DialogResult.OK)
                 {
                     tableExists = false;
@@ -166,6 +166,8 @@ namespace JSON_assignment
 
         }
 
+
+        // update employee record
         private void button2_Click(object sender, EventArgs e)
         {
             DialogResult dialog = MessageBox.Show("Is this correct: First name: " + firstName.Text + ", Last name: " + lastName.Text + ", Age: " + age.Text + ", Type: " + type.Text + ", Title: " + title.Text + ", Salary: " + salary.Text,
@@ -211,6 +213,8 @@ namespace JSON_assignment
 
         }
 
+
+        // Add employee record
         private void button3_Click(object sender, EventArgs e)
         {
             DialogResult dialog = MessageBox.Show("Is this correct: First name: " + firstName.Text +", Last name: " + lastName.Text +", Age: " + age.Text + ", Type: " + type.Text + ", Title: " + title.Text + ", Salary: " + salary.Text ,
@@ -259,9 +263,9 @@ namespace JSON_assignment
             BuildTable(table);
         }
 
+        // create new JSON string
         public string BuildTable(DataTable table)
         {
-            // create new JSON string
             var JSONString = new StringBuilder();
             if (table.Rows.Count > 0)
             {
@@ -297,9 +301,9 @@ namespace JSON_assignment
             return JSONString.ToString();
         }
 
+        // write JSON data to JSON file
         private void button4_Click(object sender, EventArgs e)
         {
-            // write JSON data to JSON file
             if (string.IsNullOrWhiteSpace(JSONstringBox.Text))
             {
                 string text = "Select data to serialize first!";
@@ -320,6 +324,7 @@ namespace JSON_assignment
             }
         }
 
+        // clear all text boxes
         private void clearTextBoxes_Click(object sender, EventArgs e)
         {
             firstName.Clear();
@@ -330,14 +335,15 @@ namespace JSON_assignment
             salary.Clear();
         }
 
+        // set search to true, clear and reset datatable, search
         private void button5_Click(object sender, EventArgs e)
         {
-            // set search to true
             searchPath = true;
             ClearDataTable();
             ParseJsonData(searchJSON);
         }
 
+        // reset table
         private void button6_Click(object sender, EventArgs e)
         {
             searchPath = false;
